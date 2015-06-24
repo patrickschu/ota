@@ -1,0 +1,40 @@
+##tagging the ota. Note Tagname (tagged2,tagged3) and the size of chunks to be tagged (500/250/100/10)
+for item in ll:
+    try:
+        inputfile=codecs.open("G://ota//xmldownload_411//"+str(item)+".txt", "r", "utf-8")
+        outputfile=codecs.open(str(item)+"_tagged2.txt", "w", "utf-8")
+        inputi=inputfile.read()
+        extracttext=re.compile(r'.*?<text>(.*?)</text>.*?', re.DOTALL)
+        extractintro=re.compile(r'(.*?<text>).*?</text>.*?', re.DOTALL)
+        extractoutro=re.compile(r'.*<text>.*?(</text>.*?)', re.DOTALL)
+        untaggedtext=extracttext.findall(inputi)
+        tagger=POSTagger("G://program files//stanford-postagger-2015-04-20//models//english-bidirectional-distsim.tagger", "G://program files//stanford-postagger-2015-04-20//stanford-postagger.jar", "utf8", java_options="-mx1000m")
+        tokens=StanfordTokenizer("G://program files//stanford-postagger-2015-04-20//stanford-postagger.jar").tokenize(untaggedtext[0])
+        print "text:", len(inputi)
+        print "tokens:", len(tokens)
+        numbers=[i*250 for i in range(0,len(tokens)/250)]
+        numbers.append(len(tokens)-1)
+        #print numbers
+        outputfile.write(" ".join(extractintro.findall(inputi))+" ")
+        for number in numbers[1:len(numbers)]:
+            indexi= numbers.index(number)
+            print indexi
+            taggedtext=tagger.tag(tokens[numbers[indexi-1]:number])
+            print numbers[indexi-1],number
+            #print tokens[numbers[indexi-1]]
+            #print tokens[number]
+            #print number[numbers.index(number)-1]
+            print "tagging", str(item)
+            taggedtext=[unicode(i) for i in taggedtext]
+            #outputfile.write(" ".join(taggedtext)+"\n\nXXXXXXXXXXXXXX\n\n")
+            outputfile.write(" ".join(taggedtext))
+        outputfile.write(" "+" ".join(extractoutro.findall(inputi)))
+        outputfile.close()
+        inputfile.close()
+    except IOError, err:
+        print "Fuck you", err
+    except OSError, err:
+	outputfile.write("-----\n\nALLARRRRRMM\n\n"+str(item)+str(err))
+	print "--------------\n\nALLARRRRRMM\n\n", item, err
+	badfiles.append(item)
+	outputfile.close()
