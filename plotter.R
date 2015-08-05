@@ -1,3 +1,5 @@
+DONT USE THIS ONE ANYMORE
+
 mentplotter=function(filename,decade) {
 ment=read.csv(file.choose(), header=T)
 ment=subset(ment, ment$pubdate > 1699 & ment$pubdate < 1801)
