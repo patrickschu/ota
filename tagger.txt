@@ -2,20 +2,25 @@
 
 import nltk; from nltk.tokenize.stanford import StanfordTokenizer; from nltk.tag.stanford import POSTagger; import os; import re
 
-for item in ll:
+os.environ['JAVAHOME']="E:/program files/java8/bin/java.exe"
+
+
+badfiles=[]
+
+for item in totag:
     try:
         inputfile=codecs.open("G://ota//xmldownload_411//"+str(item)+".txt", "r", "utf-8")
-        outputfile=codecs.open(str(item)+"_tagged2.txt", "w", "utf-8")
+        outputfile=codecs.open(str(item)+"_tagged.txt", "w", "utf-8")
         inputi=inputfile.read()
         extracttext=re.compile(r'.*?<text>(.*?)</text>.*?', re.DOTALL)
         extractintro=re.compile(r'(.*?<text>).*?</text>.*?', re.DOTALL)
         extractoutro=re.compile(r'.*<text>.*?(</text>.*?)', re.DOTALL)
         untaggedtext=extracttext.findall(inputi)
-        tagger=POSTagger("G://program files//stanford-postagger-2015-04-20//models//english-bidirectional-distsim.tagger", "G://program files//stanford-postagger-2015-04-20//stanford-postagger.jar", "utf8", java_options="-mx1000m")
+        tagger=stanford.POSTagger("G://program files//stanford-postagger-2015-04-20//models//english-bidirectional-distsim.tagger", "G://program files//stanford-postagger-2015-04-20//stanford-postagger.jar", "utf8", java_options="-mx1000m")
         tokens=StanfordTokenizer("G://program files//stanford-postagger-2015-04-20//stanford-postagger.jar").tokenize(untaggedtext[0])
         print "text:", len(inputi)
         print "tokens:", len(tokens)
-        numbers=[i*250 for i in range(0,len(tokens)/250)]
+        numbers=[i*500 for i in range(0,len(tokens)/500)]
         numbers.append(len(tokens)-1)
         #print numbers
         outputfile.write(" ".join(extractintro.findall(inputi))+" ")
@@ -41,3 +46,4 @@ for item in ll:
 	print "--------------\n\nALLARRRRRMM\n\n", item, err
 	badfiles.append(item)
 	outputfile.close()
+	
