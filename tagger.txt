@@ -1,4 +1,7 @@
 ##tagging the ota. Note Tagname (tagged2,tagged3) and the size of chunks to be tagged (500/250/100/10)
+
+import nltk; from nltk.tokenize.stanford import StanfordTokenizer; from nltk.tag.stanford import POSTagger; import os; import re
+
 for item in ll:
     try:
         inputfile=codecs.open("G://ota//xmldownload_411//"+str(item)+".txt", "r", "utf-8")
