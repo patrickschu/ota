@@ -16,3 +16,13 @@ for item in t:
 for item in t:
 	if item not in failures:
 		shutil.copy("files_tobechecked\\"+item, "files_good\\"+item)
+
+
+#compare original to tagged 
+#fili comes from goodfiles
+for item in fili:
+	try:
+		f=open("tagged_92//"+item+"_tagged.txt", "r")
+		f.close()
+	except:
+		print item
