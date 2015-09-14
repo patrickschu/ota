@@ -1,9 +1,29 @@
-for item in ll:
+#reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
+yeslist=[]
+f=open("H:\\ota\\files\\yeslist_regex_610.txt", "r")
+
+for line in f:
+	yeslist.append(line.rstrip("\n").split("\t"))
+	
+f.close()
+
+#this is the list with the files/books we're using
+goodfiles=[]
+f=open("H:\\ota\\files\\goodfiles_68.txt", "r")
+
+for line in f:
+	goodfiles.append(line.rstrip("\n"))
+
+f.close()
+
+
+#the actual reader
+for item in goodfiles:
 	try:
 		#we open the corpus fils&read it
-		finput=codecs.open("F://ota//xmldownload_411//"+str(item)+".txt", "r", "utf-8")
+		finput=codecs.open("H://ota//xmldownload_411//"+str(item)+".txt", "r", "utf-8")
 		text=finput.read()
-		outputfile="outputmentwords1400s_65.txt"
+		outputfile="output914.txt"
 		#we get the metadata
 		extractotanumber=re.compile(r'<otanumber=(.*?)>')
 		extractfilenumber=re.compile(r'<no=(.*?)>')
@@ -30,9 +50,9 @@ for item in ll:
 		output1.close()
 		#print "output1 closed"
 		#iterate over all metadata
-		for thing in fourteenhundred:
+		for thing in yeslist:
 			#print thing[0]
-			words=re.findall(r"\b("+thing[0]+")",content[0])
+			words=re.findall(r"\b("+thing[0]+'?")",content[0])
 			results.append(words)
 			#print results
 			#we join the list to make it a string, add a tab as separator
