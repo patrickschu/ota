@@ -52,7 +52,7 @@ for item in goodfiles:
 		#iterate over all metadata
 		for thing in yeslist:
 			#print thing[0]
-			words=re.findall(r"\b("+thing[0]+'?")",content[0])
+			words=re.findall(r"\b("+thing[0]+"\'?)",content[0])
 			results.append(words)
 			#print results
 			#we join the list to make it a string, add a tab as separator
