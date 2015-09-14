@@ -76,3 +76,9 @@ for item in goodfiles:
 		#finput.close()
 	except IOError, err:
 		print "Fuck you", err
+
+#for spreadsheet
+for item in yeslist:
+    print item[0]
+    
+  
