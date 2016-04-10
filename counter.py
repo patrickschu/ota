@@ -75,7 +75,7 @@ for item in goodfiles:
 		#print "output 4 closed"
 		#finput.close()
 	except IOError, err:
-		print "Fuck you", err
+		print "Error", err
 
 #for spreadsheet
 for item in yeslist:
