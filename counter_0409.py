@@ -1,4 +1,5 @@
-import codecs, re, time, os
+import codecs, re, time, os, nltk, string
+from string import punctuation
 
 #reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
 yeslist=[]
@@ -34,14 +35,25 @@ def adtextextractor(text, fili):
         print "alarm in adtextextractor", fili, result
     return result[0]
 
+
+yeslist_words=[i[0] for i in yeslist]
+#setting up the output file
+outputfile="output0409.csv"
+output0=codecs.open(outputfile, "a", "utf-8")
+
+#output column names
+cols=['uniq', 'filenumber', 'otanumber', 'pubdate', 'genre', 'title', 'wordcount']
+output0.write("\t".join(cols)+"\t")
+output0.write("\t".join(yeslist_words)+"\n")
+output0.close()
 #the actual reader
 for item in goodfiles:
 	try:
 		#we open the corpus fils&read it
 		#/Users/ps22344/Downloads
-		finput=codecs.open(os.path.join("/Users","ps22344","Downloads", "xmldownload_411",str(item)+".txt"), "r", "utf-8")
+		output1=codecs.open(outputfile, "a", "utf-8")
+		finput=codecs.open(os.path.join("/Users","ps22344","Downloads", "ota_0409",str(item)+".txt"), "r", "utf-8")
 		text=finput.read()
-		outputfile="output0409.txt"
 		#we get the metadata
 		otanumber=tagextractor(text, "otanumber", item )
 		filenumber=tagextractor(text, "no", item )
@@ -54,21 +66,20 @@ for item in goodfiles:
 		text=[i for i in contentsplit if i not in string.punctuation]
 		print "After removing punctuation, this text was {} words long".format(len(text))
 		#print len(contentsplit)
-		#setting up the output file
-		output1=codecs.open(outputfile, "a", "utf-8")
+		
 		#setting up the list for the findings for each text
 		results=[]
 		#a list of the words well be searching for, to be used in regex
 		#write the item from ll, write filenumber etc, add tab for separator
-		outputlist=[unicode(item), filenumber, otanumber, pubdate, genre, title, len(text)]
+		outputlist=[unicode(item), filenumber, otanumber, pubdate, genre, title, unicode(len(text))]
 		output1.write("\t".join(outputlist)+"\t")
-		output1.write(unicode(item)+"\t"+filenumber[0]+"\t"+otanumber[0]+"\t"+pubdate[0]+"\t"+genre[0]+"\t"+title[0]+"\t"+unicode(len(contentsplit))+"\t")
-		output1.close()
+		#output1.write(unicode(item)+"\t"+filenumber[0]+"\t"+otanumber[0]+"\t"+pubdate[0]+"\t"+genre[0]+"\t"+title[0]+"\t"+unicode(len(contentsplit))+"\t")
 		#print "output1 closed"
 		#iterate over all metadata
+		output1.close()
 		for thing in yeslist:
 			#print thing[0]
-			words=re.findall(r"\b("+thing[0]+"\'?)",content[0])
+			words=re.findall(r"\b("+thing[0]+"\'?)",content)
 			results.append(words)
 			#print results
 			#we join the list to make it a string, add a tab as separator
