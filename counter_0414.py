@@ -2,12 +2,12 @@ import codecs, re, time, os, nltk, string
 from string import punctuation
 
 #setting up the output file
-outputfile="output0414_1500s.csv"
+outputfile="output0414_1700s.csv"
 
 
 #reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
 yeslist=[]
-f=open("yeslist_1500s_0414.txt", "r")
+f=open("yeslist_1700s.txt", "r")
 
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
