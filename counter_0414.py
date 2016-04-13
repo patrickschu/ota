@@ -1,9 +1,13 @@
 import codecs, re, time, os, nltk, string
 from string import punctuation
 
+#setting up the output file
+outputfile="output0414_1500s.csv"
+
+
 #reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
 yeslist=[]
-f=open("yeslist_1600s_0414.txt", "r")
+f=open("yeslist_1500s_0414.txt", "r")
 
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
@@ -37,10 +41,9 @@ def adtextextractor(text, fili):
 
 #CAREFUL!! THIS VARIES DEP ON WHERE THE FILE WSS OUTPUT
 #
-yeslist_words=[i[1] for i in yeslist]
+yeslist_words=[i[1] for i in yeslist[1:len(yeslist)]]
 print yeslist_words
-#setting up the output file
-outputfile="output0414.csv"
+
 output0=codecs.open(outputfile, "a", "utf-8")
 
 #output column names
@@ -80,8 +83,11 @@ for item in goodfiles:
 		#iterate over all metadata
 		output1.close()
 		for thing in yeslist_words:
+			#print thing
 			#print thing[0]
 			words=re.findall(r"\b("+thing+"\'?)",content)
+			# if len(words) > 1:
+# 				print words
 			results.append(words)
 			#print results
 			#we join the list to make it a string, add a tab as separator
@@ -107,7 +113,7 @@ for item in goodfiles:
 		print "Error", err
 
 #for spreadsheet
-for item in yeslist:
-    print item[0]
+for item in yeslist_words:
+    print item
     
   

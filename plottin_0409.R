@@ -1,10 +1,12 @@
-#ment=read.csv("/Users/ps22344/Downloads/ota-master/output0409.csv", sep="\t", header=T)
-# summary(ment$wordcount)
-# colnames(ment)
+ment=read.csv("/Users/ps22344/Downloads/ota-master/output0414_1700s.csv", sep="\t", header=T)
+summary(ment$wordcount)
+colnames(ment)
 # # 8 to 206 are the ment words
 # #item=c(10:206)
-#setwd("Desktop/plots")
-mentwords=aggregate(rowSums(ment[,c(8:206)]), list(ment$pubdate), sum)
+setwd("Desktop/plots")
+
+
+mentwords=aggregate(rowSums(ment[,c(8:ncol(ment))]), list(ment$pubdate), sum)
 totalwords=aggregate(ment$wordcount, list(ment$pubdate), sum)
 merger=merge(mentwords, totalwords, by="Group.1")
 merger$freq=merger[,2]/merger[,3]
@@ -17,24 +19,24 @@ count=1
 cols
 
 #individual plots, not scaled. not normalized to 1 mio
-# for (g in genres)
-	# {
-	# print (g);
-	# subset=ment[ment$genre==g,];
-	# print (nrow(subset));
-	# mentwords=tapply(rowSums(subset[,c(8:206)]), subset$pubdate, sum);
-	# totalwords=tapply(subset$wordcount, subset$pubdate, sum);
-	# if (nrow(subset) > 99)
-	# {
-		# png(paste(g, "_ment.png"));
-		# plot(mentwords/totalwords);
-		# dev.off();
-		# count=count+1
-	# }
-# }
+for (g in genres)
+	{
+	print (g);
+	subset=ment[ment$genre==g,];
+	print (nrow(subset));
+	mentwords=tapply(rowSums(subset[,c(8:ncol(ment))]), subset$pubdate, sum);
+	totalwords=tapply(subset$wordcount, subset$pubdate, sum);
+	if (nrow(subset) > 99)
+	{
+		png(paste(g, "_1500s_ment.png"));
+		plot((mentwords/totalwords)*1000000);
+		dev.off();
+		count=count+1
+	}
+}
 
 #all in one plot
-png(paste("allgenres", "_ment.png"))
+png(paste("allgenres", "_1500s_ment.png"))
 plot(merger$Group.1, merger$freq,  type="n", ylim=c(0,1500))
 
 for (g in genres)
@@ -42,7 +44,7 @@ for (g in genres)
 	print (g);
 	subset=ment[ment$genre==g,];
 	print (nrow(subset));
-	mentwords=aggregate(rowSums(subset[,c(8:206)]), list(subset$pubdate), sum)
+	mentwords=aggregate(rowSums(subset[,c(8:ncol(ment))]), list(subset$pubdate), sum)
 	totalwords=aggregate(subset$wordcount, list(subset$pubdate), sum)
 	merger=merge(mentwords, totalwords, by="Group.1")
 	merger$freq=(merger[,2]/merger[,3])*1000000
@@ -59,9 +61,13 @@ for (g in genres)
 	}
 }
 dev.off()
-
-model=lm(ment$wordcount ~ ment$pubdate)
+merger
+sink("models.txt", append=T)
+print ("the 1700s")
+model=lm(merger$Group.1 ~ merger$freq)
+summary(model)
 model
+sink()
 # plot(mentwords/totalwords*1000000, main="ment words in black, total in red")
 # totalwords
 
