@@ -20,24 +20,30 @@ def adtextextractor(text, fili):
 def labeladder(inputdir, outputfile, *args):
 	"""
 	This takes files from an inputdir, lets the user add labels and then write their input to the outputfile.
-	Takes any number of pre-existing labels as arguments 
+	
+	
 	"""
 	
+
 	inputdir=inputdir
 	inputdir=os.path.expanduser(inputdir)
+
 	outputfile=codecs.open(os.path.join(inputdir, outputfile), "a")
 
-	for fili in [f for f in os.listdir(os.path.join(inputdir)) if not f.startswith(".")]:
-		inputi=codecs.open(os.path.join(inputdir, fili), "r")
+	for fili in [f for f in os.listdir(os.path.join(inputdir, "ota_0409")) if not f.startswith(".")]:
+		inputi=codecs.open(os.path.join(inputdir, "ota_0409", fili), "r")
 		inputfile=inputi.read()
-		data_to_display=[]
-		for arg in args:
-			data_to_display.append(tagextractor(inputfile, "no", fili))
-		print ", ".join([str(d) for d in data_to_display])	
 		
-		category=raw_input("A(merican) or B(ritish) or O(ther) or U(nknown)?\n")
+		number=tagextractor(inputfile, "no", fili)
+		title=tagextractor(inputfile, "otatitle", fili)
+		author=tagextractor(inputfile, "author", fili)
+		author2=tagextractor(inputfile, "otaauthor", fili)
+		genre=tagextractor(inputfile, "genre1", fili)
+		print "\n", number, title, author, author2, "\n"
+	
+		category=raw_input("A(merican) or B(ritish) or O(ther) or U(nknown)?")
 		print category
-		outputfile.write(",".join([str(d) for d in data_to_display])+","+category+"\n")
+		outputfile.write(",".join([number, title, category])+"\n")
 		inputi.close()
 
 	outputfile.close()

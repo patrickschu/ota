@@ -1,5 +1,4 @@
 1,Arden of Feversham,B
-1,Arden of Feversham,B
 100,Six weeks at Heppenheim,B
 1000,The iron chest: a play; in three acts. Written by George Colman, the younger. With a preface. First represented at the Theatre-Royal, Drury-Lane, on Saturday, 12th March, 1796.,B
 1002,The Isle of Wight: a poem, in three cantos.,B
