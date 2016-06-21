@@ -15,10 +15,27 @@ fifties=seq(1400,1800, by= 50)
 
 yeslist$fifties=findInterval (yeslist$birth, fifties)
 
-t=xtabs(~fifties, data=yeslist)
-
+t=data.frame(table(yeslist$fifties))
+names(t)=c("int", "freq")
+t
 plot(t, xaxt="n", main="Nominalization per 50 years") 
 axis(side=1, at=c(1:9), labels=fifties)
+zeros=c(1,9)
+zero=0
+tt=data.frame("int"=zeros, "freq"=zero)
+final=rbind(t,tt)
+t$int=as.character(t$int)
+final
+final=final[ order(as.numeric(final$int)), ]
+
+summary(final)
+png("fifty.png", width=480, height=480)
+
+
+barplot(final$freq, ylim=c(0,16), ylab="Number of nouns created", main="First occurrence by time period, 1400-1800", names.arg=c(fifties)) 
+dev.off()
+length(fifties)
+nrow(final)
 #per 25 years
 
 twens=seq(1400,1800, by= 25)
@@ -42,10 +59,11 @@ final=final[ order(as.numeric(final$int)), ]
 
 
 twens
+png("twenty-five.png", width=960, height=480)
 barplot(final$freq, ylab="Number of nouns created", main="Neologisms with -ment, 1400-1800", ylim=c(0,12), names.arg=c(twens)) 
 
 axis(side=1, at=c(1:17), labels=twens)
-
+dev.off()
 print (length(twens))
 
 

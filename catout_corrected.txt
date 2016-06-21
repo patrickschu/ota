@@ -240,88 +240,88 @@
 1225,Translation; a poem: By Thomas Francklin, ...,B
 1226,The triumph of benevolence: occasioned by the national design of erecting a monument to John Howard, Esq.,B
 1228,Turn the carpet; or, the two weavers: a new song in a dialogue between Dick and John.,B 
-1229,The two gardeners,B 
-123,An appeal to all that doubt, or disbelieve the truths of the Gospel: whether they be Deists, Arians, Socinians, or nominal Christians, in which the true grounds and reasons of the whole Christian faith and life are plainly and fully demonstrated, to which are added, some animadversions upon Dr. Trapp's late reply,B 
-1230,Two letters addressed to a member of the present Parliament: on the proposals for peace with the regicide directory of France. By the Right Hon. Edmund Burke.,B 
-1231,Two letters from Mr. Burke to gentlemen in the city of Bristol: on the bills depending in parliament relative to the trade of Ireland.,B 
-1232,Two letters on the conduct of our domestick parties, with regard to French politicks: including "Observations on the conduct of the minority, in the session of M.DCC.XCIII." By the late Right Hon. Edmund Burke.,B 
+1229,The two gardeners,B
+123,An appeal to all that doubt, or disbelieve the truths of the Gospel: whether they be Deists, Arians, Socinians, or nominal Christians, in which the true grounds and reasons of the whole Christian faith and life are plainly and fully demonstrated, to which are added, some animadversions upon Dr. Trapp's late reply,B
+1230,Two letters addressed to a member of the present Parliament: on the proposals for peace with the regicide directory of France. By the Right Hon. Edmund Burke.,B
+1231,Two letters from Mr. Burke to gentlemen in the city of Bristol: on the bills depending in parliament relative to the trade of Ireland.,B
+1232,Two letters on the conduct of our domestick parties, with regard to French politicks: including "Observations on the conduct of the minority, in the session of M.DCC.XCIII." By the late Right Hon. Edmund Burke.,B
 1233,Two strings to your bow: a farce, in two acts, as now performed at the Theatre-Royal, Covent-Garden, with distinguished applause. By Robert Jephson, Esq.,I
-1234,The wedding ring: a comic opera. In two acts. As it is performed at the Theatre Royal in Drury-Lane.,B 
-1235,What a blunder!: A comic opera, in three acts: first performed at the Theatre Royal, Haymarket, August 14, 1800. By Joseph George Holman, ...,B 
-1236,What we must all come to: A comedy in two acts, as it was intended to be acted at the Theatre-Royal in Covent-Garden.,B 
-1237,Which is the man?: A comedy, as acted at the Theatre-Royal in Covent Garden. By Mrs Cowley.,B 
-1238,The widow'd wife. A comedy: as it is acted at the Theatre Royal in Drury Lane. By His Majesty's servants. By W. Kenrick.,B 
-1239,The widow's vow: A farce, in two acts, as it is acted at the Theatre Royal, Hay-market.,B 
-124,Lady Chatterley's lover,B 
-1241,Wit's last stake. A farce: As it is performed at the Theatre Royal, Drury Lane.,B 
+1234,The wedding ring: a comic opera. In two acts. As it is performed at the Theatre Royal in Drury-Lane.,B
+1235,What a blunder!: A comic opera, in three acts: first performed at the Theatre Royal, Haymarket, August 14, 1800. By Joseph George Holman, ...,B
+1236,What we must all come to: A comedy in two acts, as it was intended to be acted at the Theatre-Royal in Covent-Garden.,B
+1237,Which is the man?: A comedy, as acted at the Theatre-Royal in Covent Garden. By Mrs Cowley.,B
+1238,The widow'd wife. A comedy: as it is acted at the Theatre Royal in Drury Lane. By His Majesty's servants. By W. Kenrick.,B
+1239,The widow's vow: A farce, in two acts, as it is acted at the Theatre Royal, Hay-market.,B
+124,Lady Chatterley's lover,B
+1241,Wit's last stake. A farce: As it is performed at the Theatre Royal, Drury Lane.,B
 1242,A voyage round the world. Containing an account of Captain Dampier's expedition into the South-Seas in the ship St George, in the years 1703 and 1704. ... Together with the author's voyage from Amapalla ... By William Funnell,,B
-1243,A word to the wise: a comedy. As it was performed at the Theatre Royal, in Drury-Lane. Written by Hugh Kelly, ...,B 
-1244,Zenobia: a tragedy: As it is performed at the Theatre Royal in Drury-Lane. By the author of The orphan of China.,B 
-1245,Zimri. An oratorio: Written by Dr. Hawkesworth.,B 
-1246,Zingis. A tragedy: As it is performed at the Theatre-Royal in Drury-Lane. By Alexander Dow.,B 
-1247,Sejanus, a tragedy: As it was intended for the stage. With a preface, wherein the manager's reasons for refusing it are set forth. By Mr. Gentleman.,B 
-1248,An account of the great and generous actions of James Butler: (late Duke of Ormond.) Dedicated to the famous University of Oxford.,B 
-1249,A supplement to Hutton's arithmetic: containing the solutions,B 
-125,Women in Love,B 
-1250,Elements of conic sections: with select exercises in various branches of mathematics and philosophy. For the use of the Royal Military Academy at Woolwich. By Charles Hutton, ...,B 
+1243,A word to the wise: a comedy. As it was performed at the Theatre Royal, in Drury-Lane. Written by Hugh Kelly, ...,B
+1244,Zenobia: a tragedy: As it is performed at the Theatre Royal in Drury-Lane. By the author of The orphan of China.,B
+1245,Zimri. An oratorio: Written by Dr. Hawkesworth.,B
+1246,Zingis. A tragedy: As it is performed at the Theatre-Royal in Drury-Lane. By Alexander Dow.,B
+1247,Sejanus, a tragedy: As it was intended for the stage. With a preface, wherein the manager's reasons for refusing it are set forth. By Mr. Gentleman.,B
+1248,An account of the great and generous actions of James Butler: (late Duke of Ormond.) Dedicated to the famous University of Oxford.,B
+1249,A supplement to Hutton's arithmetic: containing the solutions,B
+125,Women in Love,B
+1250,Elements of conic sections: with select exercises in various branches of mathematics and philosophy. For the use of the Royal Military Academy at Woolwich. By Charles Hutton, ...,B
 1251,The cub, at Newmarket: a tale,S
-1252,A satirical dialogue between a sea captain and his friend in town: humbly address'd to the gentlemen who deform'd the play of Othello, on th--rs--y, M---- the 7th, 1750, at the Th-tre R-y-l, in Dr-y L-ne: to which is added, a prologue and epilogue, much more suitable to the occasion than their own,B 
-1253,The Quaker; a comic opera: As performed at the Theare-Royal [sic] in Drury-Lane.,B 
-1254,The young Quaker; a comedy: As it is performed at the Theatre Royal in Smoke Alley, with great applause.,B 
-1255,Sprigs of laurel: a comic opera. In two acts. As performed, with universal applause, at the Theatre-Royal, Covent-Garden. Written by John O'Keeffee [sic], ...,B 
-1256,Lie of a day: a comedy, in three acts. As performed at the Theatre-Royal, Covent-Garden. By John O'Keeffe, Esq,B 
-1257,The dead alive: a comic opera: In two acts. As it is performed at the theatres in London and Dublin. By John O'Keeffe, Esq.,B 
-1258,Wild oats: or, the strolling gentlemen. A comedy, in five acts, as performed at the Theatre Royal, Covent-Garden. By John O'Keefe, Esq.,B 
-1259,An essay on the writings and genius of Pope,B 
-126,Areopagitica,B 
-1260,A day in Turkey: or, the Russian slaves. A comedy, as acted at the Theatre Royal, in Covent Garden. By Mrs. Cowley.,B 
-1261,Oatlands; or the transfer of the laurel. A poem. By John O'Keeffe,B 
-1262,The little hunch-back: or, a frolic in Bagdad. A farce. In two acts. As it is performed at the Theatre Royal, Covent-Garden, with universal applause. Written by John O'Keeffe. ...,B 
-1263,Tony Lumpkin in town: a farce. As performed at the Theatre-Royal in the Hay-Market. By J. Keeffe, ...,B 
-1264,The birth-day: or, the Prince of Arragon. A dramatick piece, with songs. In two acts. As performed at the Theatre-Royal, Hay-Market. Written by J. O'Keeffe.,B 
-1265,The waterman: or, the first of August: a ballad opera, in two acts. As it is performed at the Theatre-Royal, Hay-Market.,B 
-1266,The woodman: a comic opera, in three acts; as performed at the Theatre-Royal, Covent-Garden, with universal applause. By Mr. Bate Dudley.,B 
-1267,The flitch of bacon; a comic opera: in two acts: as it is performed at the Theatre-Royal in the Hay-Market. By the Rev. Hen. Bate.,B 
-1268,The rival candidates: a comic opera in two acts; as it is now performing at the Theatre Royal in Drury-Lane. By the Rev. Henry Bate.,B 
-1269,Life's vagaries, a comedy: in five acts. As performed at the Theatre-Royal, Covent-Garden. Written by John O'Keffe, ...,B 
+1252,A satirical dialogue between a sea captain and his friend in town: humbly address'd to the gentlemen who deform'd the play of Othello, on th--rs--y, M---- the 7th, 1750, at the Th-tre R-y-l, in Dr-y L-ne: to which is added, a prologue and epilogue, much more suitable to the occasion than their own,B
+1253,The Quaker; a comic opera: As performed at the Theare-Royal [sic] in Drury-Lane.,B
+1254,The young Quaker; a comedy: As it is performed at the Theatre Royal in Smoke Alley, with great applause.,B
+1255,Sprigs of laurel: a comic opera. In two acts. As performed, with universal applause, at the Theatre-Royal, Covent-Garden. Written by John O'Keeffee [sic], ...,B
+1256,Lie of a day: a comedy, in three acts. As performed at the Theatre-Royal, Covent-Garden. By John O'Keeffe, Esq,B
+1257,The dead alive: a comic opera: In two acts. As it is performed at the theatres in London and Dublin. By John O'Keeffe, Esq.,B
+1258,Wild oats: or, the strolling gentlemen. A comedy, in five acts, as performed at the Theatre Royal, Covent-Garden. By John O'Keefe, Esq.,B
+1259,An essay on the writings and genius of Pope,B
+126,Areopagitica,B
+1260,A day in Turkey: or, the Russian slaves. A comedy, as acted at the Theatre Royal, in Covent Garden. By Mrs. Cowley.,B
+1261,Oatlands; or the transfer of the laurel. A poem. By John O'Keeffe,B
+1262,The little hunch-back: or, a frolic in Bagdad. A farce. In two acts. As it is performed at the Theatre Royal, Covent-Garden, with universal applause. Written by John O'Keeffe. ...,B
+1263,Tony Lumpkin in town: a farce. As performed at the Theatre-Royal in the Hay-Market. By J. Keeffe, ...,B
+1264,The birth-day: or, the Prince of Arragon. A dramatick piece, with songs. In two acts. As performed at the Theatre-Royal, Hay-Market. Written by J. O'Keeffe.,B
+1265,The waterman: or, the first of August: a ballad opera, in two acts. As it is performed at the Theatre-Royal, Hay-Market.,B
+1266,The woodman: a comic opera, in three acts; as performed at the Theatre-Royal, Covent-Garden, with universal applause. By Mr. Bate Dudley.,B
+1267,The flitch of bacon; a comic opera: in two acts: as it is performed at the Theatre-Royal in the Hay-Market. By the Rev. Hen. Bate.,B
+1268,The rival candidates: a comic opera in two acts; as it is now performing at the Theatre Royal in Drury-Lane. By the Rev. Henry Bate.,B
+1269,Life's vagaries, a comedy: in five acts. As performed at the Theatre-Royal, Covent-Garden. Written by John O'Keffe, ...,B
 127,The forge in the forest,C 
-1270,The prisoner at large: a comedy. In two acts. As performed at the Theatre Royal in the Hay-Market, with universal applause. Written by John O'Keeffe, ...,B 
-1271,Midas: an English burletta. As it is performed, at the Theatre-Royal, in Covent-Garden.,B 
-1272,A new tale of a tub: written for the delight and instruction of every British subject in particular, and all the world in general.,B 
-1273,The pleasures of imagination: A poem. In three books.,B 
-1274,Gideon; or, the patriot. An epic poem: in twelve books. Upon a Hebrew plan. In honour of the two chief virtues of a people; intrepidity in foreign war: and spirit of domestic liberty. With miscellaneous notes, and large reflections,,B 
-1275,Annette and Lubin: a comic opera, in one act. As it is performed at the Theatre-Royal in Covent Garden,B 
-1276,Albina, Countess Raimond: a tragedy, by Mrs. Cowley: as it is performed at the Theatre-Royal in the Hay-Market.,B 
-1277,The wrath of man praising God: A sermon preached in the High Church of Edinburgh, May 18th, 1746. before His Grace the Lord High Commissioner to the General Assembly of the Church of Scotland. By Hugh Blair, ...,B 
-1278,An easy way to prolong life: by a little attention to what we eat and drink: containing, a chemical analysis, or, an enquiry into the nature and properties, of all kinds of food; ... Collected from the authorities of some of our ablest physicians. By a medical gentleman.,B 
-1279,Joanna of Montfaucon: a dramatic romance of the fourteenth century: as performed at the Theatre-Royal, Covent-Garden. Formed upon the plan of the German drama of Kotzebue: and adapted to the English stage by Richard Cumberland.,B 
+1270,The prisoner at large: a comedy. In two acts. As performed at the Theatre Royal in the Hay-Market, with universal applause. Written by John O'Keeffe, ...,B
+1271,Midas: an English burletta. As it is performed, at the Theatre-Royal, in Covent-Garden.,B
+1272,A new tale of a tub: written for the delight and instruction of every British subject in particular, and all the world in general.,B
+1273,The pleasures of imagination: A poem. In three books.,B
+1274,Gideon; or, the patriot. An epic poem: in twelve books. Upon a Hebrew plan. In honour of the two chief virtues of a people; intrepidity in foreign war: and spirit of domestic liberty. With miscellaneous notes, and large reflections,,B
+1275,Annette and Lubin: a comic opera, in one act. As it is performed at the Theatre-Royal in Covent Garden,B
+1276,Albina, Countess Raimond: a tragedy, by Mrs. Cowley: as it is performed at the Theatre-Royal in the Hay-Market.,B
+1277,The wrath of man praising God: A sermon preached in the High Church of Edinburgh, May 18th, 1746. before His Grace the Lord High Commissioner to the General Assembly of the Church of Scotland. By Hugh Blair, ...,B
+1278,An easy way to prolong life: by a little attention to what we eat and drink: containing, a chemical analysis, or, an enquiry into the nature and properties, of all kinds of food; ... Collected from the authorities of some of our ablest physicians. By a medical gentleman.,B
+1279,Joanna of Montfaucon: a dramatic romance of the fourteenth century: as performed at the Theatre-Royal, Covent-Garden. Formed upon the plan of the German drama of Kotzebue: and adapted to the English stage by Richard Cumberland.,B
 128,The wrecker,S
-1280,The haunted tower: a comic opera in three acts. As performed at the Theatre-Royal, Drury-Lane. Written by Mr. Cobb.,B 
-1281,Poems by Mr. Gray,B 
-1282,The impartial. An address, without flattery. Being a poet's free thoughts on the situation of our public affairs, anno 1744,B 
-1283,Select Scotish ballads.: [pt.1],B 
-1284,Select Scotish ballads.: [pt.2],B 
+1280,The haunted tower: a comic opera in three acts. As performed at the Theatre-Royal, Drury-Lane. Written by Mr. Cobb.,B
+1281,Poems by Mr. Gray,B
+1282,The impartial. An address, without flattery. Being a poet's free thoughts on the situation of our public affairs, anno 1744,B
+1283,Select Scotish ballads.: [pt.1],B
+1284,Select Scotish ballads.: [pt.2],B
 1285,Advice: a satire,S
 1286,The history and adventures of an atom: In two volumes. ... [pt.1],S
 1287,The history and adventures of an atom: In two volumes. ... [pt.2],S
 1288,The adventures of Roderick Random: In two volumes. ... [pt.1],S
 1289,The adventures of Roderick Random: In two volumes. ... [pt.2],S
 129,Uncle Tom’s cabin, or, Life among the lowly,A
-1290,Dyers news examined as to his Sweddish memorial against the Review,B 
-1291,A short view of the present state of the Protestant religion in Britain: as it is now profest in the episcopal church in England, the Presbyterian church in Scotland, and the dissenters in both.,B 
-1292,The fifteen comforts of a Scotch-man. Written by Daniel D'Foe in Scotland,B 
-1293,Caledonia: &amp;c. A poem in honour of Scotland, and the Scots nation. In three parts.,B 
-1294,The state of the excise after the union, compared with what it is now,B 
-1295,Observations on the fifth article of the treaty of union, humbly offered to the consideration of the Parliament, relating to foreign ships,B 
-1296,Try again: a farce, in two acts. As performed at the Theatre Royal in the Hay-Market.,B 
-1297,Ulysses: a tragedy. As it is acted at the Queen's Theatre in the Hay-Market. By Her Majesty's sworn servants. Written by N. Rowe, Esq;.,B 
-1298,The ambitious step-mother: A tragedy. As 'twas acted at the New Theatre in Little-Lincolns-Inn-Fields. By His Majesty's servants. By N. Rowe, Esq;.,B 
-1299,A new theory of continual fevers: Wherein, besides the appearances of such fevers, and the method of their cure; occasionally, the structure of the glands, ... are mechanically explan'd.,B 
-13,The Tale of Samuel Whiskers,B 
+1290,Dyers news examined as to his Sweddish memorial against the Review,B
+1291,A short view of the present state of the Protestant religion in Britain: as it is now profest in the episcopal church in England, the Presbyterian church in Scotland, and the dissenters in both.,B
+1292,The fifteen comforts of a Scotch-man. Written by Daniel D'Foe in Scotland,B
+1293,Caledonia: &amp;c. A poem in honour of Scotland, and the Scots nation. In three parts.,B
+1294,The state of the excise after the union, compared with what it is now,B
+1295,Observations on the fifth article of the treaty of union, humbly offered to the consideration of the Parliament, relating to foreign ships,B
+1296,Try again: a farce, in two acts. As performed at the Theatre Royal in the Hay-Market.,B
+1297,Ulysses: a tragedy. As it is acted at the Queen's Theatre in the Hay-Market. By Her Majesty's sworn servants. Written by N. Rowe, Esq;.,B
+1298,The ambitious step-mother: A tragedy. As 'twas acted at the New Theatre in Little-Lincolns-Inn-Fields. By His Majesty's servants. By N. Rowe, Esq;.,B
+1299,A new theory of continual fevers: Wherein, besides the appearances of such fevers, and the method of their cure; occasionally, the structure of the glands, ... are mechanically explan'd.,B
+13,The Tale of Samuel Whiskers,B
 130, ,O
 1300,The black art detected and expos'd: or, a demonstration of the hellish impiety, of being, or desiring to be a wizzard, conjurer, or witch. ... In a letter to a country gentleman,U
-1301,Tamerlane. A tragedy: As it is acted at the New Theater in Little Lincolns-Inn-Fields. By Her Majesty's servants. Written by N. Rowe, Esq;.,B 
-1302,Speech of Richard Brinsley Sheridan: Esq. in the House of Commons of Great Britain, on Thursday, January 31st, 1799, in reply to Mr. Pitt's speech on the union with Ireland.,B 
+1301,Tamerlane. A tragedy: As it is acted at the New Theater in Little Lincolns-Inn-Fields. By Her Majesty's servants. Written by N. Rowe, Esq;.,B
+1302,Speech of Richard Brinsley Sheridan: Esq. in the House of Commons of Great Britain, on Thursday, January 31st, 1799, in reply to Mr. Pitt's speech on the union with Ireland.,B
 1303,A letter to R----- B----- Esq; author of the new comedy called The wishes: now in rehearsal at the Theatre Royal in Drury-Lane,B 
 1304,The characters and conduct of Sir John Edgar: and his three deputy-governours. During the adminstration of the late separate ministry. In a third and fourth letter to the Knight. With a picture of Sir John, drawn by a pen, exactly after the life.,B 
 1305,The way to get married: a comedy, in five acts, as performed at the Theatre-Royal, Covent-Garden. By Thomas Morton, ...,B 
