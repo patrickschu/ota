@@ -7,12 +7,12 @@ import string
 from string import punctuation
 
 #setting up the output file
-outputfile="output.csv"
+outputfile="output_all.csv"
 
 
 #reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
 yeslist=[]
-f=open("/Users/ps22344/Downloads/ota-master/yeslist_regex_620_16.txt", "r")
+f=open("alllist_0622.txt", "r")
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
 	
@@ -20,7 +20,7 @@ f.close()
 
 #this is the list with the files/books we're using
 goodfiles=[]
-f=open("goodfiles_68.txt", "r")
+f=open("goodfiles_0620_16.txt", "r")
 
 for line in f:
 	goodfiles.append(line.rstrip("\n"))
@@ -67,7 +67,7 @@ for item in goodfiles:
 		#we open the corpus fils&read it
 		#/Users/ps22344/Downloads
 		output1=codecs.open(outputfile, "a", "utf-8")
-		finput=codecs.open(os.path.join("/Users","ps22344","Downloads", "ota_0409",str(item)+".txt"), "r", "utf-8")
+		finput=codecs.open(os.path.join("/Users","ps22344","Downloads", "ota_0621",str(item)+".txt"), "r", "utf-8")
 		text=finput.read()
 		#we get the metadata
 		otanumber=tagextractor(text, "otanumber", item )
@@ -110,6 +110,8 @@ sortdict=sorted(dicti.items(), key=lambda x: x[1], reverse=True)
 dictiout.write("\n".join([str(i) for i in sortdict]))
 print sortdict
 dictiout.close()
+
+os.system('say "your program has finished"')
 
 #for spreadsheet
 for item in yeslist_words:

@@ -1,4 +1,4 @@
-ment=read.csv("/Users/ps22344/Downloads/ota-master/output.csv.txt", sep="\t", header=T)
+ment=read.csv("/Users/ps22344/Downloads/ota-master/output_all.csv.txt", sep="\t", header=T)
 summary(ment$wordcount)
 colnames(ment)
 head(ment[,45])
@@ -40,10 +40,10 @@ for (g in genres)
 
 t
 #all in one plot
-postscript(paste("allgenres", ".eps"), width=960, height=640);
+png(paste("allgenres", ".png"), width=960, height=640, res=100);
 print ("start")
-count=1
-plot(merger$Group.1, merger$freq, pch=3, ylim=c(0,1000), ylab= "Frequency per million words", xlab="Year");
+count=1;
+plot(merger$Group.1, merger$freq, pch=3, ylim=c(0,3500), ylab= "Frequency per million words", xlab="Year");
 lmodel=lm(merger$freq ~ merger$Group.1);
 abline(reg=lmodel, lty=count);
 legendvector=c("overall");
