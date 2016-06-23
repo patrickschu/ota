@@ -7,16 +7,19 @@ import string
 from string import punctuation
 
 #setting up the output file
-outputfile="output_all.csv"
+outputfile="output_before1700.csv"
 
 
 #reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
 yeslist=[]
-f=open("alllist_0622.txt", "r")
+f=codecs.open("/Users/ps22344/Downloads/ota-master/alllist_0623_corrected.txt_pandas_before1700.txt", "r", "utf-8")
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
 	
 f.close()
+
+yeslist_words=[i[1] for i in yeslist[1:len(yeslist)]]
+print yeslist_words
 
 #this is the list with the files/books we're using
 goodfiles=[]
@@ -45,8 +48,7 @@ def adtextextractor(text, fili):
 
 #CAREFUL!! THIS VARIES DEP ON WHERE THE FILE WSS OUTPUT
 #
-yeslist_words=[i[0] for i in yeslist[1:len(yeslist)]]
-print yeslist_words
+
 
 dicti={i:0 for i in yeslist_words}
 
@@ -91,7 +93,10 @@ for item in goodfiles:
 		#iterate over all metadata
 		output1.close()
 		for thing in yeslist_words:
-			words=re.findall(r"\b((?:dis|mis|re|un)?"+thing+"\'?)",content)
+			#no suffix
+			words=re.findall(r"\b("+thing+"\'?)",content)
+			#yes suffix
+			#words=re.findall(r"\b((?:dis|mis|re|un)?"+thing+"\'?)",content)
 			dicti[thing]=dicti[thing]+len(words)
 			results.append(words)
 		print "reading", item, filenumber
