@@ -17,7 +17,7 @@ print outputfile
 
 #reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
 yeslist=[]
-f=codecs.open("/Users/ps22344/Downloads/ota-master/alllist_0623_corrected_regex.txt_pandas_1599to1700.txt", "r", "utf-8")
+f=codecs.open("/Users/ps22344/Downloads/ota-master/outputfiles/alllist_0623_corrected_regex.txt_pandas_1599to1700.txt", "r", "utf-8")
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
 	
