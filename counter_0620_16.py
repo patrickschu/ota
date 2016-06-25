@@ -6,21 +6,26 @@ import nltk
 import string
 from string import punctuation
 
-#setting up the output file
-outputfile="output_before1700.csv"
+now=time.time()
 
+
+
+
+#setting up the output file
+outputfile="output_1599to1700.csv"
+print outputfile
 
 #reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
 yeslist=[]
-f=codecs.open("/Users/ps22344/Downloads/ota-master/alllist_0623_corrected.txt_pandas_before1700.txt", "r", "utf-8")
+f=codecs.open("/Users/ps22344/Downloads/ota-master/alllist_0623_corrected_regex.txt_pandas_1599to1700.txt", "r", "utf-8")
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
 	
 f.close()
 
-yeslist_words=[i[1] for i in yeslist[1:len(yeslist)]]
-print yeslist_words
-
+yeslist_words=[i[1] for i in yeslist]
+print yeslist_words, "\n"
+print "we have {} words\n".format(len(yeslist_words))
 #this is the list with the files/books we're using
 goodfiles=[]
 f=open("goodfiles_0620_16.txt", "r")
@@ -29,7 +34,7 @@ for line in f:
 	goodfiles.append(line.rstrip("\n"))
 
 f.close()
-
+print "we have {} files\n".format(len(goodfiles))
 # some helper funcs
 
 def tagextractor(text, tag, fili):
@@ -110,16 +115,21 @@ for item in goodfiles:
 
 	except IOError, err:
 		print "Error", err
-dictiout=open("dicti.txt", "w")
+dictiout=open(outputfile+"dicti.txt", "w")
 sortdict=sorted(dicti.items(), key=lambda x: x[1], reverse=True)
 dictiout.write("\n".join([str(i) for i in sortdict]))
 print sortdict
 dictiout.close()
 
-os.system('say "your program has finished"')
+
 
 #for spreadsheet
 for item in yeslist_words:
     print item
     
-  
+later=time.time()
+runtime=later-now 
+print 'time has passed', runtime/60
+
+
+os.system('say "your program has finished"')

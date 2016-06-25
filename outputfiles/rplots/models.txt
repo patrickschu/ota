@@ -1,0 +1,112 @@
+[1] "the 1700s"
+
+Call:
+lm(formula = merger$Group.1 ~ merger$freq)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-51.53 -14.75  11.11  16.76  35.76 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 1.748e+03  6.609e+00 264.514  < 2e-16 ***
+merger$freq 6.578e-02  1.945e-02   3.381  0.00202 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 26.62 on 30 degrees of freedom
+Multiple R-squared:  0.2759,	Adjusted R-squared:  0.2518 
+F-statistic: 11.43 on 1 and 30 DF,  p-value: 0.002022
+
+
+Call:
+lm(formula = merger$Group.1 ~ merger$freq)
+
+Coefficients:
+(Intercept)  merger$freq  
+  1.748e+03    6.578e-02  
+
+[1] "the 1700s"
+
+Call:
+lm(formula = merger$Group.1 ~ merger$freq)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-38.287 -12.336   4.365  13.968  28.107 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 1.737e+03  5.496e+00 316.130  < 2e-16 ***
+merger$freq 8.063e-02  1.259e-02   6.404 4.53e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 20.33 on 30 degrees of freedom
+Multiple R-squared:  0.5775,	Adjusted R-squared:  0.5635 
+F-statistic: 41.01 on 1 and 30 DF,  p-value: 4.531e-07
+
+
+Call:
+lm(formula = merger$Group.1 ~ merger$freq)
+
+Coefficients:
+(Intercept)  merger$freq  
+  1.737e+03    8.063e-02  
+
+[1] "the 1700s"
+
+Call:
+lm(formula = merger$Group.1 ~ merger$freq)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-54.570  -7.038   6.294  15.826  42.252 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 1.741e+03  7.147e+00 243.538  < 2e-16 ***
+merger$freq 7.095e-02  1.707e-02   4.158 0.000247 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 24.92 on 30 degrees of freedom
+Multiple R-squared:  0.3656,	Adjusted R-squared:  0.3444 
+F-statistic: 17.29 on 1 and 30 DF,  p-value: 0.0002472
+
+
+Call:
+lm(formula = merger$Group.1 ~ merger$freq)
+
+Coefficients:
+(Intercept)  merger$freq  
+  1.741e+03    7.095e-02  
+
+[1] "the 1700s"
+
+Call:
+lm(formula = merger$Group.1 ~ merger$freq)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-48.209  -3.868   0.292  13.079  32.635 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 1.735e+03  6.287e+00 275.965  < 2e-16 ***
+merger$freq 2.096e-02  3.624e-03   5.784 2.55e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 21.51 on 30 degrees of freedom
+Multiple R-squared:  0.5273,	Adjusted R-squared:  0.5115 
+F-statistic: 33.46 on 1 and 30 DF,  p-value: 2.551e-06
+
+
+Call:
+lm(formula = merger$Group.1 ~ merger$freq)
+
+Coefficients:
+(Intercept)  merger$freq  
+  1.735e+03    2.096e-02  
+
