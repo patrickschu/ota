@@ -12,18 +12,18 @@ now=time.time()
 
 
 #setting up the output file
-outputfile="output_1599to1700.csv"
+outputfile="output_overall_1399to1700.csv"
 print outputfile
 
 #reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
 yeslist=[]
-f=codecs.open("/Users/ps22344/Downloads/ota-master/outputfiles/alllist_0623_corrected_regex.txt_pandas_1599to1700.txt", "r", "utf-8")
+f=codecs.open("/Users/ps22344/Downloads/ota-master/outputfiles/alllist_0623_corrected_regex.txt", "r", "utf-8")
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
 	
 f.close()
 
-yeslist_words=[i[1] for i in yeslist]
+yeslist_words=[i[0] for i in yeslist]
 print yeslist_words, "\n"
 print "we have {} words\n".format(len(yeslist_words))
 #this is the list with the files/books we're using

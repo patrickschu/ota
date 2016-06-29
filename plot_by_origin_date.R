@@ -4,10 +4,10 @@
 setwd("Desktop/rplots")
 
 
-overall= c(-17800.62,10.42)
-firstcentury= c( -4878.90 , 2.86 );
-secondcentury= c(-11295.445279, 6.609997 );
-thirdcentury= c(-3553.138 , 2.082  );
+overall= c()
+firstcentury= c(-14851.555503,8.695632);
+secondcentury= c(-11295.445279,6.609997);
+thirdcentury= c(-12191.78252,7.12621);
 
 periods= list(firstcentury, secondcentury, thirdcentury);
 print (firstcentury[1]);
@@ -16,8 +16,8 @@ png("allgenres_byfirstcitation.png", width=960, height=640, res=100)
 plot(overall,  ylim=c(0,2500), xlim=c(1700,1800));
 abline(overall[1], overall[2], lty=1);
 
-ltyvector=c(1)
-count=2
+ltyvector=c(1);
+count=2;
 
 for (p in periods)
 {
