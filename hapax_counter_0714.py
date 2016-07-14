@@ -60,20 +60,27 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 	writes out a dictionary to a text file after sorting it
 	"""
 	print "Starting the dictionarywriter, sorting is", sort_dict
-	outputi=codecs.open(file_name, "w", "utf-8")
 	sorteddict=sorted(dictionary.items(), key=lambda x: x[1], reverse=True)
-	outputi.write("\n".join([str(i) for i in sorteddict]))
-	outputi.close()
+	with codecs.open(file_name, "w", "utf-8") as outputi:
+		outputi.write("\n".join([str(i) for i in sorteddict]))
+	with open(file_name+".json", "w") as jsonoutputi:
+		json.dump(dictionary, jsonoutputi,  encoding="utf-8")
 	
 header="\n\n-------\n"
 	
 
 def main(inputspread, start_time, end_time, interval):
+	"""
+	Creates periods between start_time and end_time as determined by interval. 
+	For each, relevant texts are extracted and words are counted. 
+	In the end, full dictionary and hapax dictionary are output as txt file and json.
+	"""
+	overalldicti=defaultdict(dict)
 	spreadsheet=pandas.DataFrame()
 	for item in range(start_time, end_time, interval):
-		perioddicti=defaultdict(list)
 		print header, item, header
 		subsetspread= periodfinder(inputspread, item, interval) 
+		perioddicti=defaultdict(list)
 		#iterating over all the files contained in the extracted spreadsheet
 		for fileno in subsetspread['filenumber']:
 			#read file
@@ -81,43 +88,27 @@ def main(inputspread, start_time, end_time, interval):
 				inputtext=inputfili.read()
 			content=adtextextractor(inputtext,item)
 			contentsplit=nltk.word_tokenize(content)
-			print "Before removing punctuation, this text was {} words long".format(len(contentsplit))
+			#print "Before removing punctuation, this text was {} words long".format(len(contentsplit))
 			text=[i.lower() for i in contentsplit if not re.match(r"\d+", i)]
 			text= [re.sub(r"('s|s|s's|ed)\b", "", i) for i in text if i not in string.punctuation]
-			print "After removing punctuation, this text was {} words long".format(len(text))
+			#print "After removing punctuation, this text was {} words long".format(len(text))
 			for word in text:
 				perioddicti[word].append(word)
-		perioddicti={k:len(v) for k,v in perioddicti.items()}
 		print header, "Number of words in perioddicti is", len(perioddicti)
-		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_dict.txt", perioddicti)
 		hapaxdicti= {k:v for k,v in perioddicti.items() if v == 1}
 		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"hapax_dict.txt", hapaxdicti)
-		print "Number of hapaxes is", len(hapaxdicti)
-		print hapaxdicti.keys()
-		for i in yeslist_words:
-			print i
-			print [x for x in hapaxdicti.keys() if re.match(r"\b"+i+"\b", x)]
-		#print "Hapaxes in ment", [i for i in yeslist_words if i in [i for x in hapaxdicti.keys() if re.match(i,x)]]
-		
-		
-		
-		
-		
-		# outputi=codecs.open(, "w", "utf-8")
-# 		perioddicti= {k:len(v) for k,v in perioddicti.items()}
-# 		sortdict=sorted(perioddicti.items(), key=lambda x: x[1], reverse=True)
-# 		outputi.write("\n".join([str(i) for i in sortdict]))
-		
-		
-		
-
-
-
-
-
-
-
-
+		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_dict.txt", perioddicti)
+		for entry in perioddicti:
+			overalldicti[entry][item]=len(perioddicti[entry])
+	
+	print "Writing the overalldicti to file"
+	dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_dict.txt", overalldicti)
+	
+	print "Making hapaxdicti"	
+	overallhapax={k:v for k,v in overalldicti.items() if sum(v.values()) == 1}
+	print "Overall hapax has {} entries".format(len(overallhapax))
+	print "Write to file"
+	dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_hapaxdict.txt", overallhapax)
 
 
 
