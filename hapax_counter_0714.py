@@ -49,11 +49,11 @@ def periodfinder(inputspread, start_time, interval):
 
 
 def adtextextractor(text, fili):
-    regexstring="<text>(.*?)</text>"
-    result=re.findall(regexstring, text, re.DOTALL)
+    regex=re.compile("<text>(.*?)</text>", re.DOTALL)
+    result=re.findall(regex, text)
     if len(result) != 1:
         print "alarm in adtextextractor", fili, result
-    return result[0]
+    return unicode(result[0])
 
 def dictwriter(file_name, dictionary, sort_dict=True):
 	"""
@@ -61,10 +61,11 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 	"""
 	print "Starting the dictionarywriter, sorting is", sort_dict
 	sorteddict=sorted(dictionary.items(), key=lambda x: x[1], reverse=True)
+	print sorteddict
 	with codecs.open(file_name, "w", "utf-8") as outputi:
-		outputi.write("\n".join([str(i) for i in sorteddict]))
+ 		outputi.write("\n".join([":".join([i[0],unicode(i[1])]) for i in sorteddict]))
 	with open(file_name+".json", "w") as jsonoutputi:
-		json.dump(dictionary, jsonoutputi,  encoding="utf-8")
+		json.dump({k: v for k,v in dictionary.items()}, jsonoutputi,  ensure_ascii=False)
 	
 header="\n\n-------\n"
 	
@@ -80,39 +81,53 @@ def main(inputspread, start_time, end_time, interval):
 	for item in range(start_time, end_time, interval):
 		print header, item, header
 		subsetspread= periodfinder(inputspread, item, interval) 
-		perioddicti=defaultdict(list)
+		perioddicti= defaultdict(list)
 		#iterating over all the files contained in the extracted spreadsheet
 		for fileno in subsetspread['filenumber']:
 			#read file
 			with codecs.open(os.path.join('/Users/ps22344/Downloads/ota_0621', unicode(fileno)+".txt"), "r", "utf-8") as inputfili:
 				inputtext=inputfili.read()
 			content=adtextextractor(inputtext,item)
-			contentsplit=nltk.word_tokenize(content)
+			print type(content)
+			contentsplit=nltk.tokenize.word_tokenize(content, language='english')
+			
+			#contentsplit=content.encode("utf-8").split()
+			#print fileno, [i.decode("utf-8") for i in contentsplit][:2000]
+			
 			#print "Before removing punctuation, this text was {} words long".format(len(contentsplit))
 			text=[i.lower() for i in contentsplit if not re.match(r"\d+", i)]
+
 			text= [re.sub(r"('s|s|s's|ed)\b", "", i) for i in text if i not in string.punctuation]
+			#print text[:2000]
+			print fileno, text[:2000]
 			#print "After removing punctuation, this text was {} words long".format(len(text))
 			for word in text:
 				perioddicti[word].append(word)
+						
 		print header, "Number of words in perioddicti is", len(perioddicti)
-		hapaxdicti= {k:v for k,v in perioddicti.items() if v == 1}
-		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"hapax_dict.txt", hapaxdicti)
-		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_dict.txt", perioddicti)
+		perioddicti_nos={k:len(v) for k,v in perioddicti.items()}
+		hapaxdicti= {k:v for k,v in perioddicti_nos.items() if v == 1}
+		# f=codecs.open(os.path.join("outputfiles", unicode(fileno)+"________________chartest.txt"), "w", "utf-8")
+#   		f.write(" ".join(hapaxdicti.keys()))
+#   		f.close()
+		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_hapaxdict.txt", hapaxdicti)
+		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_dict.txt", perioddicti_nos)
 		for entry in perioddicti:
 			overalldicti[entry][item]=len(perioddicti[entry])
 	
+	#this is the overall dictionary and output
 	print "Writing the overalldicti to file"
 	dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_dict.txt", overalldicti)
-	
 	print "Making hapaxdicti"	
 	overallhapax={k:v for k,v in overalldicti.items() if sum(v.values()) == 1}
+	print overallhapax
 	print "Overall hapax has {} entries".format(len(overallhapax))
 	print "Write to file"
 	dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_hapaxdict.txt", overallhapax)
 
 
 
-main(inputi, 1700, 1800, 10)
+main(inputi, 1700, 1720, 10)
 
 
 
