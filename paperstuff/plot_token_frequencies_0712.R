@@ -1,6 +1,6 @@
 ##this plots word frequencies (tokens/million) by year
 
-ment=read.csv("/Users/ps22344/Downloads/ota-master/paperstuff/output_alllist_0713", sep="\t", header=T)
+ment=read.csv("/Users/ps22344/Downloads/ota-master/paperstuff/output_gaddlist_0714", sep="\t", header=T)
 summary(ment)
 colnames(ment)
 head(ment[,45])
@@ -46,10 +46,10 @@ cols
 
 t
 #all in one plot
-png(paste("allgenres_allfiles", ".png"), width=960, height=640, res=100);
+png(paste("allgenres_gaddlist", ".png"), width=960, height=640, res=100);
 print ("start")
 count=1;
-plot(merger$Group.1, merger$freq, pch=3, ylim=c(0,5000), ylab= "Frequency per million words", xlab="Year", main="Token frequencies of -ment words");
+plot(merger$Group.1, merger$freq, pch=3, ylim=c(0,5000), ylab= "Frequency per million words", xlab="Year", main="Token frequencies of derived -ment words");
 lmodel=lm(merger$freq ~ merger$Group.1);
 print ("overall model");
 print(summary(lmodel));
