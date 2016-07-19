@@ -1,6 +1,7 @@
 
 
 #we have acquired intercepts and slopes, now we plot them
+#we use this for regression by origin date
 setwd("Desktop/rplots")
 
 

@@ -12,23 +12,25 @@ now=time.time()
 
 
 #setting up the output file
-outputfile="output_gaddsyeslist_0709"
+outputfile="output_gaddlist_0714"
 print outputfile
 
-#reading in the yestlist, nolist or whatever. these are the words to iterate over/search for
+#reading in the yeslist, nolist or whatever. these are the words to iterate over/search for
 yeslist=[]
-f=codecs.open("/Users/ps22344/Downloads/ota-master/paperstuff/gadds_yeslist_0709.txt", "r", "utf-8")
+f=codecs.open("/Users/ps22344/Downloads/ota-master/paperstuff/gadds_yeslist_withzeros_0713.txt_pandas_0to1700.txt", "r", "utf-8")
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
 	
 f.close()
 
-yeslist_words=[i[0] for i in yeslist]
+#WATCH THIS SETTING
+yeslist_words=[i[1] for i in yeslist]
+
 print yeslist_words, "\n"
 print "we have {} words\n".format(len(yeslist_words))
 #this is the list with the files/books we're using
 goodfiles=[]
-f=open("/Users/ps22344/Downloads/ota-master/goodfiles_0620_16.txt", "r")
+f=open("/Users/ps22344/Downloads/ota-master/paperstuff/goodfiles_0620_16.txt", "r")
 
 for line in f:
 	goodfiles.append(line.rstrip("\n"))
@@ -85,7 +87,7 @@ for item in goodfiles:
 		content=adtextextractor(text,item)
 		contentsplit=nltk.word_tokenize(content)
 		print "Before removing punctuation, this text was {} words long".format(len(contentsplit))
-		text=[i for i in contentsplit if i not in string.punctuation]
+		text=[i.lower() for i in contentsplit if i not in string.punctuation]
 		print "After removing punctuation, this text was {} words long".format(len(text))
 		#print len(contentsplit)
 		
@@ -99,7 +101,7 @@ for item in goodfiles:
 		output1.close()
 		for thing in yeslist_words:
 			#no suffix
-			words=re.findall(r"\b("+thing+"\'?)",content)
+			words=re.findall(r"\b("+thing+"\'?)\b",content)
 			#yes suffix
 			#words=re.findall(r"\b((?:dis|mis|re|un)?"+thing+"\'?)",content)
 			dicti[thing]=dicti[thing]+len(words)

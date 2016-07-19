@@ -1,7 +1,7 @@
 # this plots how many words originated in a given time period
 # how much fun is that?
 
-yeslist=read.csv('/Users/ps22344/Downloads/ota-master/paperstuff/alllist_0708_corrected_regex.txt', sep="\t", header=F)
+yeslist=read.csv('/Users/ps22344/Downloads/ota-master/paperstuff/alllist_0712_corrected_regex.txt', sep="\t", header=F)
 summary(yeslist)
 setwd("Desktop/rplots")
 
@@ -11,7 +11,8 @@ head(yeslist);
 summary(yeslist$birth);
 
 ##per 50 years
-fifties=seq(1250,1800, by= 50);
+fifties=seq(1300,1900, by= 50);
+#seq(1300, 1900, by=50)
 fifties
 yeslist$fifties=findInterval (yeslist$birth, fifties);
 yeslist$fifties
@@ -25,17 +26,21 @@ t
 # tt=data.frame("int"=zeros, "freq"=zero);
 # final=rbind(t,tt);
 t$int=as.character(t$int);
-##WE EXCLUDE EVERYTHING BEFORE 1250 HEERE
-final=subset(t, t$int != 0);
+##WE EXCLUDE EVERYTHING BEFORE 1250 HEERE and everything after the last date
+# final=subset(t, t$int != 0 && t$int !=length(fifties));
+# airquality[airquality$Month == 8 & airquality$Temp > 90, ]
+final=t[t$int != 0 & t$int !=length(fifties),]
 final
+levels(as.factor(final$int))
+length(fifties)
 final=final[ order(as.numeric(final$int)), ];
 final;
 summary(final);
-png("fifty_derived.png", width=480, height=480);
+png("fifty_all.png", width=480, height=480);
 nrow(final);
 
 
-barplot(final$freq, ylim=c(0,300), ylab="Number of new types", main="First occurrence by time period, 1250-1800", names.arg=(fifties[-length(fifties)]), cex.names=0.8, las=2); 
+barplot(final$freq, ylim=c(0,300), ylab="Number of types introduced", main="First occurrence by time period, 1300-1900", names.arg=(fifties[-length(fifties)]), cex.names=0.8, las=2); 
 dev.off();
 length(fifties[-length(fifties)]);
 length(levels(as.factor(final$int)))
