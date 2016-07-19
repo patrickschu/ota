@@ -16,7 +16,8 @@ def gaddcomparer(input_file, comparison_file):
 	for tuple in gaddfile:
 		entry=tuple.split(",")
 		#print len(entry), entry
-		if entry[0].startswith("\t") or int(entry[1].strip(")")) == 0:
+		if entry[0].startswith("\t"):
+			print "passing", entry
 			pass
 		else:
 			entry=entry[0].strip("(u\"\'")
@@ -26,10 +27,10 @@ def gaddcomparer(input_file, comparison_file):
 				print "this is in metadata", entry
 				result.append([entry, re.split("\n|\t",metadatafile)[re.split("\n|\t", metadatafile).index(entry)+1]])
 		print len(result)
-		outputfile=codecs.open("gadds_yeslist_0708.txt", "w", "utf-8")
+		outputfile=codecs.open("gadds_yeslist_withzeros_0710.txt", "w", "utf-8")
 		outputfile.write("\n".join(["\t".join(r) for r in result]))
 	print "written to {}".format(outputfile)
 
 	
 
-gaddcomparer('/Users/ps22344/Downloads/ota-master/paperstuff/output_gaddslist_0708dicti.txt', '/Users/ps22344/Downloads/ota-master/outputfiles/alllist_0708_corrected_regex.txt')	
+gaddcomparer('/Users/ps22344/Desktop/project/gadd_zerowordschecked.txt', '/Users/ps22344/Downloads/ota-master/paperstuff/alllist_0708_corrected_regex.txt')	
