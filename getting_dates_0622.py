@@ -11,10 +11,14 @@ files= [i for i in os.listdir(input) if not i.startswith(".") ]
 
 print files
 
-outputfile="alllist_0623.txt"
+outputfile="alllist_1800s.txt"
 output=codecs.open(outputfile, "a")
 
 for fili in files:
+	"""
+	this takes one of the files produced by extractfromhtml.py and makes it into a nice tab-delimited
+	word\tyear spreadsheet
+	"""
 	print fili
 	inputi=codecs.open(os.path.join(input,fili), "r").read()
 	words= inputi.split("\n")[0].split("\t")
@@ -32,5 +36,6 @@ for fili in files:
 		output.write(t[0]+"\t"+t[1]+"\n")
 	
 output.close()
+print "written to", output
 		
 
