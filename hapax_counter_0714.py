@@ -67,10 +67,10 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 	"""
 	print "Starting the dictionarywriter, sorting is", sort_dict
 	sorteddict=sorted(dictionary.items(), key=lambda x: x[1], reverse=True)
-	with codecs.open(file_name, "w", "utf-8") as outputi:
+	with codecs.open(os.path.join("outputfiles", file_name+".txt"), "w", "utf-8") as outputi:
 		outputi.write("\n".join([":".join([i[0],unicode(i[1])]) for i in sorteddict]))
-	# with codecs.open(file_name+".json", "w", "utf-8") as jsonoutputi:
-# 		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
+	with codecs.open(os.path.join("outputfiles", file_name+".json"), "w", "utf-8") as jsonoutputi:
+ 		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
 	
 header="\n\n-------\n"
 	
@@ -113,8 +113,9 @@ def main(inputspread, start_time, end_time, interval, write_files=False):
 		the perioddicti_hapax contains all hapaxes for this period, based on perioddicti_nos
 		--overall--
 		the overalldicti  contains counts for each word per period, format: {word:{year1:X, year2:x ...}, word2:{}}
-		the overallmentdicti containts count for each mentword per period, format cf above
-		the overallhapaxdicti (created later) contains all the hapaxes total, based on overalldicti
+		the overalldicti_ment containts count for each mentword per period, format cf above
+		the overalldicti_hapax (created later) contains all the hapaxes total, based on overalldicti
+		overalldicti_hapax_ment (created later) contains all the hapaxes in -ment total, based on overalldicti_hapax
 		"""
 		perioddicti_nos={k:len(v) for k,v in perioddicti.items()}
 		perioddicti_hapax= {k:v for k,v in perioddicti_nos.items() if v == 1}
@@ -134,12 +135,15 @@ def main(inputspread, start_time, end_time, interval, write_files=False):
 	
 	print "Making hapaxdicti"	
 	overalldicti_hapax={k:v for k,v in overalldicti.items() if sum(v.values()) == 1}
+	overalldicti_hapax_ment={k:v for k,v in overalldicti_hapax.items() if any (re.match(regex,k) for regex in yeslist_words)}
 	print "Overall hapax has {} entries".format(len(overalldicti_hapax))
 	if write_files:	
 		print "Write to file"
 		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_hapaxdict.txt", overalldicti_hapax)
 		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_dict.txt", overalldicti)
 		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_mentdict.txt", overalldicti_ment)
+		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_hapax_mentdict.txt", overalldicti_hapax_ment)
+
 		hapaxspread=pandas.DataFrame()
 	
 	
