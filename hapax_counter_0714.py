@@ -106,15 +106,6 @@ def main(inputspread, start_time, end_time, interval):
 		#perioddicti_ment={e:perioddicti[k] for e in yesdict if re.match(e,k)}
 		#perioddicti_ment={k:[e for e in yesdict if re.match("^"+e+"$", k)] for k in perioddicti.keys()}
 		print header, perioddicti_ment		
-	# 		
-# 			
-# 			
-# 			
-# 		perioddicti_ment={e:[key for key in perioddicti if re.match("^"+e+"$", key) ] for e in yesdict}
-# 		
-# 		perioddicti_ment={k:v for k,v in perioddicti.items if [re.match("^"+e+"$", k) for e in yesdict.keys()]}
-# 		
-# 		[key for key in perioddicti if re.match("^"+e+"$", key) ] for e in yesdict}
 		perioddicti_nos={k:len(v) for k,v in perioddicti.items()}
 		hapaxdicti= {k:v for k,v in perioddicti_nos.items() if v == 1}
 		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_hapaxdict.txt", hapaxdicti)
