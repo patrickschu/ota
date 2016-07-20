@@ -192,7 +192,7 @@ def hapax_stats(output_file, hapax_file, allwords_file, write_file=False):
  	fullspread=fullspread.sort_index()
  	print header, fullspread
 	if write_file:
-		fullspread.to_csv(os.path.join(otadir, "outputfiles", output_file+"_"+time.strftime("%H_%M%_m_%d")+".csv"), encoding="utf-8")
+		fullspread.to_csv(os.path.join(otadir, "outputfiles", output_file+"_"+time.strftime("%H_%M_%m_%d")+".csv"), encoding="utf-8")
 		print "Written", output_file
 		
 		
