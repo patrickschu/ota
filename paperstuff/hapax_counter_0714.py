@@ -67,9 +67,9 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 	"""
 	print "Starting the dictionarywriter, sorting is", sort_dict
 	sorteddict=sorted(dictionary.items(), key=lambda x: x[1], reverse=True)
-	with codecs.open(os.path.join("outputfiles", file_name+".txt"), "w", "utf-8") as outputi:
+	with codecs.open(os.path.join("outputfiles", file_name), "w", "utf-8") as outputi:
 		outputi.write("\n".join([":".join([i[0],unicode(i[1])]) for i in sorteddict]))
-	with codecs.open(os.path.join("outputfiles", file_name+".json"), "w", "utf-8") as jsonoutputi:
+	with codecs.open(os.path.join("outputfiles", file_name), "w", "utf-8") as jsonoutputi:
  		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
 	
 header="\n\n-------\n"
@@ -79,7 +79,8 @@ def main(inputspread, start_time, end_time, interval, write_files=False):
 	"""
 	Creates periods between start_time and end_time as determined by interval. 
 	For each, relevant texts are extracted and words are counted. 
-	In the end, full dictionary and hapax dictionary are output as txt file and json.
+	In the end, full dictionaries, hapax dictionaries, and ment-dictionaries are output as txt file and json.
+	They are created for each time period and the entire dataset ("overall"). 
 	"""
 	overalldicti=defaultdict(dict)
 	overalldicti_ment=defaultdict(dict)
@@ -147,48 +148,54 @@ def main(inputspread, start_time, end_time, interval, write_files=False):
 		hapaxspread=pandas.DataFrame()
 	
 	
-def hapax_stats(hapax_file, allwords_file):
-	hapax_periods=defaultdict()
-	allwords_periods=defaultdict()
+def hapax_stats(output_file, hapax_file, allwords_file, write_file=False):
+	"""
+	The hapax_stats creates a spreadsheet calculating ratios hapax to total words. 
+	hapax_file is a dictionary of hapaxes per year, allwords_file is a dictionary of total words per year. 
+	Input needs to be a JSON file, formatted: {entry: {year1:count, year2:count, ...}, entry2:{}}.
+	"""
+	hapax_periods=defaultdict(list)
+	allwords_periods=defaultdict(list)
 	with open(hapax_file) as inputfile:
 		hapaxes=json.load(inputfile, encoding='utf-8')
 	with open(allwords_file) as inputfile:
 		allwords=json.load(inputfile, encoding='utf-8')
-	
 	#this is set comprehension, cf here: http://stackoverflow.com/questions/30331907/list-comprehension-check-if-item-is-unique
 	periods={v.keys()[0] for k,v in allwords.items()}
-	print periods
 	for p in periods:
-		hapax_periods[p]=len([e for e in hapaxes.values() if e.get(p, None)])
+		for entry in hapaxes:
+			hapax_periods[p]=hapax_periods[p]+[v for k,v in hapaxes[entry].items() if k==p ]
+	hapax_periods={k:sum(v) for k,v in hapax_periods.items()}
 	hapax_periods[u'overall']=sum(hapax_periods.values())
-	print hapax_periods
+	print header, "The Hapax dictionary\n", hapax_periods
 	for p in periods:
-		allwords_periods[p]=[e.values()[0] for e in allwords.values() if e.get(p, None)]
-		allwords_periods[p]=sum(allwords_periods[p])
+		for entry in allwords:
+			print entry
+			allwords_periods[p]=allwords_periods[p]+[v for k,v in allwords[entry].items() if k==p ]
+		print allwords_periods
+	allwords_periods={k:sum(v) for k,v in allwords_periods.items()}
 	allwords_periods[u'overall']=sum(allwords_periods.values())
-	print allwords_periods
-	for item in hapax_periods:
-		print type(item)
-	hapaxspread=pandas.DataFrame(hapax_periods, index=["hapaxes"])
+	print header, "The overall dictionary\n", allwords_periods
 
-	allwordspread=pandas.DataFrame(allwords_periods, index=["allwords"])
-	print hapaxspread, header
-	print allwordspread, header
-	
-	# fullspread=pandas.concat([hapaxspread, allwordspread])
-# 	fullspread['freqpermil']=fullspread['hapaxes']/fullspread['allwords']
+# 	hapaxspread=pandas.DataFrame(hapax_periods, index=["hapaxes"])
+# 
+# 	allwordspread=pandas.DataFrame(allwords_periods, index=["allwords"])
+# 	print hapaxspread, header
+# 	print allwordspread, header
+# 
+# 	
+# 	fullspread=pandas.DataFrame(index=hapax_periods.keys())
+# 	fullspread['hapaxes']=hapax_periods.values()
+# 	fullspread['allwords']=allwords_periods.values()
+# 	fullspread['freqpermil']=fullspread['hapaxes']/fullspread['allwords']*1000000
+# 	fullspread=fullspread.sort_index()
 # 	print header, fullspread
-	
-	
-	fullspread=pandas.DataFrame(index=hapax_periods.keys())
-	fullspread['hapaxes']=hapax_periods.values()
-	fullspread['allwords']=allwords_periods.values()
-	print header, fullspread
-	fullspread['freqpermil']=fullspread['hapaxes']/fullspread['allwords']*1000000
-	print header, fullspread
+	if write_file:
+		fullspread.to_csv(output_file+"_"+time.strftime("%m_%d_%Y")+".csv", encoding="utf-8")
+		print "Written", output_file
 		
 		
-#hapax_stats('/Users/ps22344/Downloads/ota-master/1700to1800overall_hapaxdict.txt.json', '/Users/ps22344/Downloads/ota-master/1700to1800overall_dict.txt.json')
+hapax_stats('hapaxes_ment', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_hapax_mentdict.txt.json', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_mentdict.txt.json', write_file=True)
 		
 	
 		
@@ -199,7 +206,7 @@ def hapax_stats(hapax_file, allwords_file):
 
 
 
-main(inputi, 1700, 1800, 10, True)
+#main(inputi, 1700, 1800, 10, True)
 
     
 later=time.time()
