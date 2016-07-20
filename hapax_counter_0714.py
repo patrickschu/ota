@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-
+##TESTING###
 
 import codecs 
 import re 
@@ -21,14 +21,17 @@ now=time.time()
 
 yeslist=[]
 yesdict={}
-f=codecs.open("/Users/ps22344/Downloads/ota-master/paperstuff/alllist_0712_corrected_regex.txt_pandas_0to1700.txt", "r", "utf-8")
+f=codecs.open("/Users/ps22344/Downloads/ota/paperstuff/alllist_0712_corrected_regex.txt_pandas_0to1700.txt", "r", "utf-8")
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
 	
 f.close()
 
 #WATCH THIS SETTING
-yeslist_words=[i[1] for i in yeslist]
+#yeslist_words=[i[1] for i in yeslist]
+yeslist_words=[re.compile("^"+i[1]+"$") for i in yeslist]
+print len(yeslist_words)
+
 yesdict={i[1]:0 for i in yeslist}
 #print "yeslist", yeslist_words
 #print yesdict
@@ -37,7 +40,7 @@ yesdict={i[1]:0 for i in yeslist}
 
 
 
-inputi=pandas.read_csv('/Users/ps22344/Downloads/ota-master/paperstuff/output_alllist_0713', sep="\t")
+inputi=pandas.read_csv('/Users/ps22344/Downloads/ota/paperstuff/output_alllist_0713', sep="\t")
 
 
 def periodfinder(inputspread, start_time, interval):
@@ -66,25 +69,25 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 	sorteddict=sorted(dictionary.items(), key=lambda x: x[1], reverse=True)
 	with codecs.open(file_name, "w", "utf-8") as outputi:
 		outputi.write("\n".join([":".join([i[0],unicode(i[1])]) for i in sorteddict]))
-	with codecs.open(file_name+".json", "w", "utf-8") as jsonoutputi:
-		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
+	# with codecs.open(file_name+".json", "w", "utf-8") as jsonoutputi:
+# 		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
 	
 header="\n\n-------\n"
 	
 
-def main(inputspread, start_time, end_time, interval):
+def main(inputspread, start_time, end_time, interval, write_files=False):
 	"""
 	Creates periods between start_time and end_time as determined by interval. 
 	For each, relevant texts are extracted and words are counted. 
 	In the end, full dictionary and hapax dictionary are output as txt file and json.
 	"""
 	overalldicti=defaultdict(dict)
+	overalldicti_ment=defaultdict(dict)
 	spreadsheet=pandas.DataFrame()
 	for item in range(start_time, end_time, interval):
 		print header, item, header
 		subsetspread= periodfinder(inputspread, item, interval) 
 		perioddicti= defaultdict(list)
-		perioddicti_ment=defaultdict()
 		#iterating over all the files contained in the extracted spreadsheet
 		for fileno in [f for f in subsetspread['filenumber']]:
 			#read file
@@ -101,28 +104,44 @@ def main(inputspread, start_time, end_time, interval):
 			for word in text:
 				perioddicti[word].append(word)
 		print header, "Number of words in perioddicti is", len(perioddicti)
-		perioddicti_ment= {k:v for k,v in perioddicti.items() if any (re.match("^"+regex+"$",k) for regex in yeslist_words)}
-		#output = { i : [ r.match(i).group(0) for r in ref_re if r.match(i) ] for i in input }
-		#perioddicti_ment={e:perioddicti[k] for e in yesdict if re.match(e,k)}
-		#perioddicti_ment={k:[e for e in yesdict if re.match("^"+e+"$", k)] for k in perioddicti.keys()}
-		print header, perioddicti_ment		
+		"""
+		we need three dicts:
+		--for the present period--
+		the perioddicti contains lists per wordcounts for this period
+		the perioddicti_nos contains counts per word for this period, based on perioddicti
+		the perioddicti_ment contains overall wordcounts for all mentwords, based on the perioddicti_nos
+		the perioddicti_hapax contains all hapaxes for this period, based on perioddicti_nos
+		--overall--
+		the overalldicti  contains counts for each word per period, format: {word:{year1:X, year2:x ...}, word2:{}}
+		the overallmentdicti containts count for each mentword per period, format cf above
+		the overallhapaxdicti (created later) contains all the hapaxes total, based on overalldicti
+		"""
 		perioddicti_nos={k:len(v) for k,v in perioddicti.items()}
-		hapaxdicti= {k:v for k,v in perioddicti_nos.items() if v == 1}
-		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_hapaxdict.txt", hapaxdicti)
-		dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_dict.txt", perioddicti_nos)
+		perioddicti_hapax= {k:v for k,v in perioddicti_nos.items() if v == 1}
+		perioddicti_ment= {k:v for k,v in perioddicti_nos.items() if any (re.match(regex,k) for regex in yeslist_words)}
+		
+		
 		for entry in perioddicti:
-			overalldicti[entry][item]=len(perioddicti[entry])
+			overalldicti[entry][item]=perioddicti_nos[entry]
+		for entry in perioddicti_ment:
+			overalldicti_ment[entry][item]=perioddicti_ment[entry]
+		
+		if write_files:
+			print "Write to file"
+			dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_hapaxdict.txt", perioddicti_hapax)
+			dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_dict.txt", perioddicti_nos)
+			dictwriter(unicode(item)+"to"+unicode(item+interval-1)+"_mentdict.txt", perioddicti_ment)
 	
-	#this is the overall dictionary and output
-	print "Writing the overalldicti to file"
-	dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_dict.txt", overalldicti)
 	print "Making hapaxdicti"	
-	overallhapax={k:v for k,v in overalldicti.items() if sum(v.values()) == 1}
-	print "Overall hapax has {} entries".format(len(overallhapax))
-	print "Write to file"
-	dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_hapaxdict.txt", overallhapax)
-	hapaxspread=pandas.DataFrame()
-	# year:list 0f hapaxes
+	overalldicti_hapax={k:v for k,v in overalldicti.items() if sum(v.values()) == 1}
+	print "Overall hapax has {} entries".format(len(overalldicti_hapax))
+	if write_files:	
+		print "Write to file"
+		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_hapaxdict.txt", overalldicti_hapax)
+		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_dict.txt", overalldicti)
+		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_mentdict.txt", overalldicti_ment)
+		hapaxspread=pandas.DataFrame()
+	
 	
 def hapax_stats(hapax_file, allwords_file):
 	hapax_periods=defaultdict()
@@ -176,7 +195,7 @@ def hapax_stats(hapax_file, allwords_file):
 
 
 
-main(inputi, 1700, 1800, 10)
+main(inputi, 1700, 1800, 10, True)
 
     
 later=time.time()
