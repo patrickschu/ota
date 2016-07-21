@@ -16,33 +16,24 @@ import codecs
 from collections import defaultdict
 import os
 
+
+##VARIABLES
 now=time.time()
-
-
+otadir=os.path.split(os.getcwd())[0]
+#these are words to iterate over
 yeslist=[]
 yesdict={}
-f=codecs.open("/Users/ps22344/Downloads/ota/paperstuff/alllist_0712_corrected_regex.txt_pandas_0to1700.txt", "r", "utf-8")
+f=codecs.open("/Users/ps22344/Downloads/ota/paperstuff/datafiles/alllist_0712_corrected_regex.txt_pandas_0to1700.txt", "r", "utf-8")
 for line in f:
 	yeslist.append(line.rstrip("\n").split("\t"))
-	
 f.close()
-
-#WATCH THIS SETTING
-#yeslist_words=[i[1] for i in yeslist]
 yeslist_words=[re.compile("^"+i[1]+"$") for i in yeslist]
-print len(yeslist_words)
-
-yesdict={i[1]:0 for i in yeslist}
-#print "yeslist", yeslist_words
-#print yesdict
+print '# of words in yeslist: ', len(yeslist_words)
+#spreadsheet of files, note that we only use this to find relevant files
+inputi=pandas.read_csv('/Users/ps22344/Downloads/ota/paperstuff/datafiles/output_alllist_0713', sep="\t")
 
 
-
-
-
-inputi=pandas.read_csv('/Users/ps22344/Downloads/ota/paperstuff/output_alllist_0713', sep="\t")
-
-
+##TOOLS
 def periodfinder(inputspread, start_time, interval):
 	"""
 	The periodfinder extracts all data points from inputspread that satisfy the criteria
@@ -52,7 +43,6 @@ def periodfinder(inputspread, start_time, interval):
 	print "Running periodfinder for {} - {}".format(start_time,start_time+interval -1)
 	outputspread=inputspread.loc[(inputspread['pubdate']>=start_time) & (inputspread['pubdate']<start_time+interval)]
 	return outputspread
-
 
 def adtextextractor(text, fili):
     regex=re.compile("<text>(.*?)</text>", re.DOTALL)
@@ -67,14 +57,14 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 	"""
 	print "Starting the dictionarywriter, sorting is", sort_dict
 	sorteddict=sorted(dictionary.items(), key=lambda x: x[1], reverse=True)
-	with codecs.open(os.path.join("outputfiles", file_name), "w", "utf-8") as outputi:
+	with codecs.open(os.path.join(otadir, "outputfiles", file_name), "w", "utf-8") as outputi:
 		outputi.write("\n".join([":".join([i[0],unicode(i[1])]) for i in sorteddict]))
-	with codecs.open(os.path.join("outputfiles", file_name), "w", "utf-8") as jsonoutputi:
+	with codecs.open(os.path.join(otadir,"outputfiles", file_name), "w", "utf-8") as jsonoutputi:
  		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
 	
 header="\n\n-------\n"
 	
-
+##MAIN HAPAX_COUNTER
 def main(inputspread, start_time, end_time, interval, write_files=False):
 	"""
 	Creates periods between start_time and end_time as determined by interval. 
@@ -145,15 +135,15 @@ def main(inputspread, start_time, end_time, interval, write_files=False):
 		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_mentdict.txt", overalldicti_ment)
 		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_hapax_mentdict.txt", overalldicti_hapax_ment)
 
-		hapaxspread=pandas.DataFrame()
 	
-	
+##HAPAX_STATS MAKER	
 def hapax_stats(output_file, hapax_file, allwords_file, write_file=False):
 	"""
 	The hapax_stats creates a spreadsheet calculating ratios hapax to total words. 
 	hapax_file is a dictionary of hapaxes per year, allwords_file is a dictionary of total words per year. 
 	Input needs to be a JSON file, formatted: {entry: {year1:count, year2:count, ...}, entry2:{}}.
 	"""
+	
 	otadir=os.path.split(os.getcwd())[0]
 	hapax_periods=defaultdict(list)
 	allwords_periods=defaultdict(list)
@@ -188,26 +178,20 @@ def hapax_stats(output_file, hapax_file, allwords_file, write_file=False):
 	
 	fullspread = pandas.concat([hapaxspread,allwordsspread], axis=1)
 	print fullspread
- 	fullspread['freqpermil']=fullspread['hapaxes']/fullspread['wordcount']*1000000
- 	fullspread=fullspread.sort_index()
- 	print header, fullspread
+	fullspread['freqpermil']=fullspread['hapaxes']/fullspread['wordcount']*1000000
+	fullspread=fullspread.sort_index()
+	print header, fullspread
 	if write_file:
 		fullspread.to_csv(os.path.join(otadir, "outputfiles", output_file+"_"+time.strftime("%H_%M_%m_%d")+".csv"), encoding="utf-8")
 		print "Written", output_file
 		
 		
-hapax_stats('hapaxes', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_hapaxdict.txt.json', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_dict.txt.json', write_file=True)
-		
-	
-		
-	#iterate over periods to 
-	# get total number of words
-	# number of hapaxes
-	#then totaltotal number of hapaxes, totaltotal number of words
+#hapax_stats('hapaxes', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_hapaxdict.txt.json', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_dict.txt.json', write_file=True)
 
 
 
-#main(inputi, 1700, 1800, 10, True)
+
+main(inputi, 1700, 1800, 50, True)
 
     
 later=time.time()
