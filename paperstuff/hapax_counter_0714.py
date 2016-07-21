@@ -62,7 +62,8 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 	with codecs.open(os.path.join(otadir, "outputfiles", file_name), "w", "utf-8") as outputi:
 		outputi.write("\n".join([":".join([i[0],unicode(i[1])]) for i in sorteddict]))
 	with codecs.open(os.path.join(otadir,"outputfiles", file_name+".json"), "w", "utf-8") as jsonoutputi:
- 		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
+		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
+	print "Written to",  os.path.join(otadir,"outputfiles", file_name)
 	
 header="\n\n-------\n"
 	
@@ -132,10 +133,10 @@ def main(inputspread, start_time, end_time, interval, write_files=False):
 	print "Overall hapax has {} entries".format(len(overalldicti_hapax))
 	if write_files:	
 		print "Write to file"
-		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_hapaxdict.txt", overalldicti_hapax)
-		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_dict.txt", overalldicti)
-		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_mentdict.txt", overalldicti_ment)
-		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"overall_hapax_mentdict.txt", overalldicti_hapax_ment)
+		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"int"+unicode(interval)+"_overall_hapaxdict.txt", overalldicti_hapax)
+		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"int"+unicode(interval)+"overall_dict.txt", overalldicti)
+		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"int"+unicode(interval)+"overall_mentdict.txt", overalldicti_ment)
+		dictwriter(unicode(start_time)+"to"+unicode(end_time)+"int"+unicode(interval)+"overall_hapax_mentdict.txt", overalldicti_hapax_ment)
 
 	
 ##HAPAX_STATS MAKER	
@@ -185,15 +186,15 @@ def hapax_stats(output_file, hapax_file, allwords_file, write_file=False):
 	print header, fullspread
 	if write_file:
 		fullspread.to_csv(os.path.join(otadir, "outputfiles", output_file+"_"+time.strftime("%H_%M_%m_%d")+".csv"), encoding="utf-8")
-		print "Written", output_file
+		print "Written", os.path.join(otadir, "outputfiles", output_file+"_"+time.strftime("%H_%M_%m_%d")+".csv")
 		
 		
-hapax_stats('hapaxes_50yearperiods_', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_hapaxdict.txt.json', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_dict.txt.json', write_file=True)
+hapax_stats('hapaxes_25yearperiods_overall', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800int25_overall_hapaxdict.txt.json', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800int25overall_dict.txt.json', write_file=True)
+
+#main(inputi, 1700, 1800, 25, True)
 
 
 
-
-#main(inputi, 1700, 1800, 50, True)
 
     
 later=time.time()
