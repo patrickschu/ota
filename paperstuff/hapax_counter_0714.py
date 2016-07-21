@@ -20,6 +20,7 @@ import os
 ##VARIABLES
 now=time.time()
 otadir=os.path.split(os.getcwd())[0]
+header="\n\n-------\n"
 #these are words to iterate over
 yeslist=[]
 yesdict={}
@@ -65,7 +66,17 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
 	print "Written to",  os.path.join(otadir,"outputfiles", file_name)
 	
-header="\n\n-------\n"
+	
+def spreadmerger(spreadsheet_1, spreadsheet_2, filename=False):
+	with codecs.open(spreadsheet_1, "r", "utf-8") as inputfile:
+		spreadsheet1=inputfile.read()
+	with codecs.open(spreadsheet_2, "r", "utf-8") as inputfile:
+		spreadsheet2=inputfile.read()
+	outputspread=pandas.concat([spreadsheet_1,spreadsheet2], axis=1)
+
+
+
+
 	
 ##MAIN HAPAX_COUNTER
 def main(inputspread, start_time, end_time, interval, write_files=False):
@@ -146,7 +157,6 @@ def hapax_stats(output_file, hapax_file, allwords_file, write_file=False):
 	hapax_file is a dictionary of hapaxes per year, allwords_file is a dictionary of total words per year. 
 	Input needs to be a JSON file, formatted: {entry: {year1:count, year2:count, ...}, entry2:{}}.
 	"""
-	
 	otadir=os.path.split(os.getcwd())[0]
 	hapax_periods=defaultdict(list)
 	allwords_periods=defaultdict(list)
