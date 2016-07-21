@@ -68,13 +68,14 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 	
 	
 def spreadmerger(spreadsheet_1, spreadsheet_2, filename=False):
-	with codecs.open(spreadsheet_1, "r", "utf-8") as inputfile:
-		spreadsheet1=inputfile.read()
-	with codecs.open(spreadsheet_2, "r", "utf-8") as inputfile:
-		spreadsheet2=inputfile.read()
-	outputspread=pandas.concat([spreadsheet_1,spreadsheet2], axis=1)
+	spreadsheet1=pandas.read_csv(spreadsheet_1, encoding="utf-8")
+	spreadsheet2=pandas.read_csv(spreadsheet_2, encoding="utf-8")
+	outputspread=pandas.concat([spreadsheet1,spreadsheet2], axis=1)
+	print os.path.split(spreadsheet_1)
+	outputspread.to_csv(os.path.join(otadir, "outputfiles", os.path.split(spreadsheet_1)[1]+os.path.split(spreadsheet_2)[1]+"_merged.csv"), encoding="utf-8")
+	return outputspread
 
-
+spreadmerger('/Users/ps22344/Downloads/ota/outputfiles/hapaxes_25yearperiods_overall_13_50_07_21.csv', '/Users/ps22344/Downloads/ota/outputfiles/hapaxes_25yearperiods_ment_13_39_07_21.csv' )
 
 
 	
@@ -199,7 +200,7 @@ def hapax_stats(output_file, hapax_file, allwords_file, write_file=False):
 		print "Written", os.path.join(otadir, "outputfiles", output_file+"_"+time.strftime("%H_%M_%m_%d")+".csv")
 		
 		
-hapax_stats('hapaxes_25yearperiods_overall', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800int25_overall_hapaxdict.txt.json', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800int25overall_dict.txt.json', write_file=True)
+#hapax_stats('hapaxes_25yearperiods_overall', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800int25_overall_hapaxdict.txt.json', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800int25overall_dict.txt.json', write_file=True)
 
 #main(inputi, 1700, 1800, 25, True)
 
@@ -213,4 +214,4 @@ runtime=later-now
 print 'time has passed', runtime/60
 
 
-os.system('say "your program has finished"')
+#os.system('say "your program has finished"')
