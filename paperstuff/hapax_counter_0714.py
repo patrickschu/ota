@@ -55,11 +55,13 @@ def dictwriter(file_name, dictionary, sort_dict=True):
 	"""
 	writes out a dictionary to a text file after sorting it
 	"""
+	#it would be nice if input was just the file name and we add ending according to format
+	#right now, we do ".txt.json"
 	print "Starting the dictionarywriter, sorting is", sort_dict
 	sorteddict=sorted(dictionary.items(), key=lambda x: x[1], reverse=True)
 	with codecs.open(os.path.join(otadir, "outputfiles", file_name), "w", "utf-8") as outputi:
 		outputi.write("\n".join([":".join([i[0],unicode(i[1])]) for i in sorteddict]))
-	with codecs.open(os.path.join(otadir,"outputfiles", file_name), "w", "utf-8") as jsonoutputi:
+	with codecs.open(os.path.join(otadir,"outputfiles", file_name+".json"), "w", "utf-8") as jsonoutputi:
  		json.dump(dictionary, jsonoutputi, ensure_ascii=False)
 	
 header="\n\n-------\n"
@@ -186,12 +188,12 @@ def hapax_stats(output_file, hapax_file, allwords_file, write_file=False):
 		print "Written", output_file
 		
 		
-#hapax_stats('hapaxes', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_hapaxdict.txt.json', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_dict.txt.json', write_file=True)
+hapax_stats('hapaxes_50yearperiods_', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_hapaxdict.txt.json', '/Users/ps22344/Downloads/ota/outputfiles/1700to1800overall_dict.txt.json', write_file=True)
 
 
 
 
-main(inputi, 1700, 1800, 50, True)
+#main(inputi, 1700, 1800, 50, True)
 
     
 later=time.time()
